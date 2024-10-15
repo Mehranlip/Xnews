@@ -1,53 +1,49 @@
 body {
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
-  margin: 0; /* حذف فاصله پیش‌فرض */
-  padding: 0; /* حذف padding پیش‌فرض */
-  font-family: 'Roboto', sans-serif; /* فونت پیش‌فرض */
-  background-image: url('../src/assets/bg/macos-big-sur-stock-sedimentary-rocks-evening-starry-sky-6016x6016-3781.jpg'); /* آدرس تصویر */
-  background-size: cover; /* پوشش کامل صفحه */
-  background-position: center; /* مرکز تصویر */
-  background-attachment: fixed; /* ثابت بودن تصویر */
-  color: #fff; /* رنگ متن سفید */
+  margin: 0;
+  padding: 0;
+  background-image: url('../src/assets/bg/macos-big-sur-stock-sedimentary-rocks-evening-starry-sky-6016x6016-3781.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
 }
-
 
 .full-height {
-  height:70dvh; /* ارتفاع کل صفحه */
-  display: flex; /* استفاده از flexbox */
-  flex-direction: column; /* جهت محتوای افقی */
-  justify-content: center; /* مرکز چینش عمودی */
-  align-items: center; /* مرکز چینش افقی */
+  height: 70dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.main-section{
+.main-section {
   width: 100%;
   height: 70dvh;
-  
 }
 
 .intro-text {
-  text-align: center; /* تراز وسط متن */
+  text-align: center;
 }
 
 @keyframes shine {
   0% {
-    color: #e0e0e0; /* رنگ نقره‌ای بسیار روشن */
+    color: #e0e0e0;
     text-shadow: 
       1px 1px 5px rgba(0, 0, 0, 0.1), 
       0 0 25px rgba(255, 255, 255, 0.3), 
       0 0 50px rgba(255, 255, 255, 0.5);
   }
   50% {
-    color: #ffffff; /* رنگ سفید */
+    color: #ffffff;
     text-shadow: 
       1px 1px 10px rgba(0, 0, 0, 0.1), 
       0 0 35px rgba(255, 255, 255, 0.6), 
       0 0 70px rgba(255, 255, 255, 0.7);
   }
   100% {
-    color: #e0e0e0; /* بازگشت به نقره‌ای روشن */
+    color: #e0e0e0;
     text-shadow: 
       1px 1px 5px rgba(0, 0, 0, 0.1), 
       0 0 25px rgba(255, 255, 255, 0.212), 
@@ -56,119 +52,112 @@ body {
 }
 
 .intro-text h1 {
-  font-size: 4rem; /* اندازه عنوان */
-  color: #e0e0e0; /* نقره‌ای بسیار روشن */
-  font-weight: bold; /* بولد بودن عنوان */
-  margin-bottom: 7px; /* فاصله پایین */
-  font-family: 'Poppins', sans-serif; /* فونت مدرن */
-  animation: shine 2s infinite; /* انیمیشن برای برق زدن */
+  font-size: 4rem;
+  color: #e0e0e0;
+  font-weight: bold;
+  margin-bottom: 7px;
+  font-family: 'Poppins', sans-serif;
+  animation: shine 2s infinite;
 }
-
 
 .intro-text h5 {
   margin-top: 10px;
-  font-size: 1.3rem; /* اندازه عنوان */
-  color: #e0e0e0; /* نقره‌ای بسیار روشن */
-  margin-bottom: 7px; /* فاصله پایین */
-  font-family: 'Roboto', sans-serif; /* فونت مدرن */
-  animation: shine 2s infinite; /* انیمیشن برای برق زدن */
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin-bottom: 7px;
+  font-family: 'Roboto', sans-serif;
+  animation: shine 2s infinite;
 }
 
-
-
-
 .keyword-input {
-  display: flex; /* چیدمان افقی */
-  align-items: center; /* تراز عمودی */
-  margin-bottom: 20px; /* فاصله پایین */
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .keyword-input input[type="text"] {
-  flex: 1; /* اینپوت تمام فضای موجود را پر کند */
-  padding: 10px 15px; /* فاصله داخلی */
-  border: none; /* حذف مرز */
-  border-radius: 25px; /* گوشه‌های گرد */
-  background: rgba(255, 255, 255, 0.3); /* رنگ شفاف */
-  backdrop-filter: blur(10px); /* اثر شیشه‌ای */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* سایه */
-  font-size: 1rem; /* اندازه فونت */
-  color: #333; /* رنگ متن */
-  transition: all 0.3s ease; /* انیمیشن برای تغییرات */
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
 }
 
 .keyword-input input[type="text"]:focus {
-  outline: none; /* حذف خط بیرونی */
-  background: rgba(255, 255, 255, 0.5); /* رنگ شفاف در حالت فوکوس */
+  outline: none;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .keyword-input input[type="text"]::placeholder {
-  color: rgba(51, 51, 51, 0.8); /* رنگ متن راهنما */
-  font-style: italic; /* ایتالیک */
+  color: rgba(51, 51, 51, 0.8);
+  font-style: italic;
 }
 
 .keyword-input button {
-  margin-left: 10px; /* فاصله بین اینپوت و دکمه */
-  padding: 10px 20px; /* فاصله داخلی */
-  border: none; /* حذف مرز */
-  border-radius: 25px; /* گوشه‌های گرد */
-  background: linear-gradient(45deg, #007bff, #00c6ff); /* گرادیانت آبی */
-  color: white; /* رنگ متن دکمه */
-  font-size: 1rem; /* اندازه فونت دکمه */
-  cursor: pointer; /* تغییر اشاره‌گر به دست */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* سایه */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* انیمیشن برای تغییرات */
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .keyword-input button:hover {
-  background: linear-gradient(45deg, #00c6ff, #007bff); /* تغییر رنگ دکمه در حالت هاور */
-  box-shadow: 0 0 20px rgba(0, 198, 255, 0.5), 0 0 40px rgba(0, 123, 255, 0.5); /* سایه نورانی */
+  background: linear-gradient(45deg, #00c6ff, #007bff);
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.5), 0 0 40px rgba(0, 123, 255, 0.5);
 }
 
-
-
 .keyword-list {
-  display: flex; /* استفاده از flex برای چینش */
-  flex-wrap: wrap; /* به‌هم پیوسته بودن آیتم‌ها */
-  gap: 10px; /* فاصله بین آیتم‌ها */
-  justify-content: center; /* چینش به مرکز */
-  align-items: center; /* تراز عمودی */
-  margin-top: 20px; /* فاصله از بالای صفحه */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .keyword-item {
-  background: rgba(255, 255, 255, 0.3); /* پس‌زمینه شفاف */
-  backdrop-filter: blur(10px); /* افکت شیشه‌ای */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* حاشیه شفاف */
-  border-radius: 10px; /* گوشه‌های گرد */
-  padding: 5px 10px; /* فاصله داخلی */
-  display: flex; /* استفاده از flex برای چینش داخلی */
-  align-items: center; /* تراز عمودی */
-  transition: all 0.3s ease; /* انیمیشن نرم */
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
 .keyword-item:hover {
-  transform: scale(1.05); /* بزرگ شدن کمی هنگام هاور */
+  transform: scale(1.05);
 }
 
 .remove-btn {
-  background: none; /* حذف پس‌زمینه */
-  border: none; /* حذف حاشیه */
-  color: #ffffff; /* رنگ دکمه */
-  font-size: 1.5rem; /* اندازه دکمه */
-  cursor: pointer; /* نمایش نشانه اشاره‌گر */
-  margin-left: 10px; /* فاصله بین متن و دکمه */
-  transition: color 0.3s ease; /* انیمیشن تغییر رنگ */
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.3s ease;
 }
 
 .remove-btn:hover {
-  color: #b4b4b4; /* تغییر رنگ دکمه در هاور */
+  color: #b4b4b4;
 }
-
 
 .news-item {
   position: relative;
   width: 100%;
-  height: 300px; /* ارتفاع هر آیتم خبری */
+  height: 300px;
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -223,8 +212,6 @@ ul {
   text-decoration: none;
 }
 
-
-
 .copyright {
   text-align: center;
   font-size: 1rem;
@@ -235,7 +222,7 @@ ul {
 }
 
 .copyright a {
-  color: #2bacbd; /* رنگ لینک */
+  color: #2bacbd;
   text-decoration: none;
   font-weight: bold;
 }

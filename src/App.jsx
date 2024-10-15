@@ -10,7 +10,6 @@ function App() {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    // Load keywords from local storage when the app loads
     const storedKeywords = JSON.parse(localStorage.getItem('keywords') || '[]');
     setKeywords(storedKeywords);
     if (storedKeywords.length > 0) {
@@ -18,30 +17,27 @@ function App() {
     }
   }, []);
 
-  // Function to add a keyword
   const addKeyword = (newKeyword) => {
     if (newKeyword && !keywords.includes(newKeyword)) {
       const updatedKeywords = [...keywords, newKeyword];
       setKeywords(updatedKeywords);
       localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
-      loadNews(updatedKeywords);  // Reload news when new keyword is added
+      loadNews(updatedKeywords);
     }
   };
 
-  // Function to remove a keyword
   const removeKeyword = (keyword) => {
     const updatedKeywords = keywords.filter(k => k !== keyword);
     setKeywords(updatedKeywords);
     localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
-    loadNews(updatedKeywords);  // Reload news when a keyword is removed
+    loadNews(updatedKeywords);
   };
 
-  // Function to load news based on keywords
   const loadNews = async (keywordsToSearch) => {
     setLoading(true);
     try {
       const query = keywordsToSearch.join(' OR ');
-      const apiKey = import.meta.env.VITE_NEWS_API_KEY; // استفاده از متغیر محیطی VITE
+      const apiKey = import.meta.env.VITE_NEWS_API_KEY;
       const response = await fetch(
         `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`
       );
@@ -67,8 +63,8 @@ function App() {
             <KeywordInput addKeyword={addKeyword} />
             <KeywordList keywords={keywords} removeKeyword={removeKeyword} />
             <div className="copyright">
-  &copy; {new Date().getFullYear()} All Rights Reserved. Developed by <a href="https://github.com/mehranlip" target="_blank" rel="noopener noreferrer">Mehran</a>.
-</div>
+              &copy; {new Date().getFullYear()} All Rights Reserved. Developed by <a href="https://github.com/mehranlip" target="_blank" rel="noopener noreferrer">Mehran</a>.
+            </div>
           </div>
         </div>
       </div>

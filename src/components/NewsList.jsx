@@ -4,25 +4,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function NewsList({ articles, loading, hasMore }) {
   const getRandomGradient = () => {
     const colors = [
-      'rgba(255, 0, 150, 0.6)',   // صورتی
-      'rgba(0, 204, 255, 0.6)',   // آبی
-      'rgba(100, 255, 0, 0.6)',    // سبز
-      'rgba(255, 255, 0, 0.6)',    // زرد
-      'rgba(255, 100, 100, 0.6)',  // قرمز
-      'rgba(75, 0, 130, 0.6)',     // نیلی
+      'rgba(255, 0, 150, 0.6)',  
+      'rgba(0, 204, 255, 0.6)',  
+      'rgba(100, 255, 0, 0.6)',   
+      'rgba(255, 255, 0, 0.6)',   
+      'rgba(255, 100, 100, 0.6)', 
+      'rgba(75, 0, 130, 0.6)',    
     ];
     const color1 = colors[Math.floor(Math.random() * colors.length)];
     const color2 = colors[Math.floor(Math.random() * colors.length)];
     return `linear-gradient(to bottom, ${color1}, ${color2})`;
   };
 
-  // فیلتر کردن مقالات
   const filteredArticles = articles.filter(article => article.description !== '[Removed]');
 
   const rows = [];
   for (let i = 0; i < filteredArticles.length; i++) {
     if (i % 5 === 0) {
-      // ردیف جدید با 3 پست
       rows.push(
         <div className="row" key={i}>
           {filteredArticles.slice(i, i + 3).map((article, index) => (
@@ -49,7 +47,6 @@ function NewsList({ articles, loading, hasMore }) {
         </div>
       );
     } else if (i % 5 === 3) {
-      // ردیف جدید با 2 پست که یکی از آن‌ها جای دو پست را می‌گیرد
       rows.push(
         <div className="row" key={i}>
           <div className="col-12 col-md-8 mb-4">

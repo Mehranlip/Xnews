@@ -6,7 +6,7 @@ function KeywordInput({ addKeyword }) {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       addKeyword(newKeyword);
-      setNewKeyword(''); // Reset input after adding
+      setNewKeyword('');
     }
   };
 
@@ -21,7 +21,7 @@ function KeywordInput({ addKeyword }) {
       />
       <button onClick={() => {
         addKeyword(newKeyword);
-        setNewKeyword(''); // Reset input after clicking button
+        setNewKeyword('');
       }}>
         Add Keyword
       </button>
