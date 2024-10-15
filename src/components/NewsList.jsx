@@ -19,12 +19,14 @@ function NewsList({ articles, loading, hasMore }) {
   // فیلتر کردن مقالات
   const filteredArticles = articles.filter(article => article.description !== '[Removed]');
 
-  return (
-    <div className="news container">
-      <div className="row">
-        {filteredArticles.length > 0 ? (
-          filteredArticles.map((article, index) => (
-            <div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
+  const rows = [];
+  for (let i = 0; i < filteredArticles.length; i++) {
+    if (i % 5 === 0) {
+      // ردیف جدید با 3 پست
+      rows.push(
+        <div className="row" key={i}>
+          {filteredArticles.slice(i, i + 3).map((article, index) => (
+            <div className="col-12 col-md-4 mb-4" key={index}>
               <li
                 className="news-item"
                 style={{
@@ -43,11 +45,65 @@ function NewsList({ articles, loading, hasMore }) {
                 </a>
               </li>
             </div>
-          ))
-        ) : (
-          <p>No news available.</p>
-        )}
-      </div>
+          ))}
+        </div>
+      );
+    } else if (i % 5 === 3) {
+      // ردیف جدید با 2 پست که یکی از آن‌ها جای دو پست را می‌گیرد
+      rows.push(
+        <div className="row" key={i}>
+          <div className="col-12 col-md-8 mb-4">
+            <li
+              className="news-item"
+              style={{
+                backgroundImage: filteredArticles[i].urlToImage
+                  ? `url(${filteredArticles[i].urlToImage})`
+                  : getRandomGradient(),
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <a href={filteredArticles[i].url} target="_blank" rel="noopener noreferrer">
+                <div className="news-content">
+                  <h2>{filteredArticles[i].title}</h2>
+                  <p>{filteredArticles[i].description}</p>
+                </div>
+              </a>
+            </li>
+          </div>
+          {filteredArticles[i + 1] && (
+            <div className="col-12 col-md-4 mb-4">
+              <li
+                className="news-item"
+                style={{
+                  backgroundImage: filteredArticles[i + 1].urlToImage
+                    ? `url(${filteredArticles[i + 1].urlToImage})`
+                    : getRandomGradient(),
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <a href={filteredArticles[i + 1].url} target="_blank" rel="noopener noreferrer">
+                  <div className="news-content">
+                    <h2>{filteredArticles[i + 1].title}</h2>
+                    <p>{filteredArticles[i + 1].description}</p>
+                  </div>
+                </a>
+              </li>
+            </div>
+          )}
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div className="news container">
+      {filteredArticles.length > 0 ? (
+        rows
+      ) : (
+        <p>No news available.</p>
+      )}
       {loading && <p>Loading more news...</p>}
       {!hasMore && <p>No more news available.</p>}
     </div>

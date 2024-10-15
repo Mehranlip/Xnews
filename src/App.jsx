@@ -66,6 +66,9 @@ function App() {
             <h1>Xnews </h1>
             <KeywordInput addKeyword={addKeyword} />
             <KeywordList keywords={keywords} removeKeyword={removeKeyword} />
+            <div className="copyright">
+  &copy; {new Date().getFullYear()} All Rights Reserved. Developed by <a href="https://github.com/mehranlip" target="_blank" rel="noopener noreferrer">Mehran</a>.
+</div>
           </div>
         </div>
       </div>

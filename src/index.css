@@ -4,7 +4,7 @@ body {
   margin: 0; /* حذف فاصله پیش‌فرض */
   padding: 0; /* حذف padding پیش‌فرض */
   font-family: 'Roboto', sans-serif; /* فونت پیش‌فرض */
-  background-image: url('../src/assets/bg/bg-space.jpg'); /* آدرس تصویر */
+  background-image: url('../src/assets/bg/macos-big-sur-stock-sedimentary-rocks-evening-starry-sky-6016x6016-3781.jpg'); /* آدرس تصویر */
   background-size: cover; /* پوشش کامل صفحه */
   background-position: center; /* مرکز تصویر */
   background-attachment: fixed; /* ثابت بودن تصویر */
@@ -64,6 +64,15 @@ body {
   animation: shine 2s infinite; /* انیمیشن برای برق زدن */
 }
 
+
+.intro-text h5 {
+  margin-top: 10px;
+  font-size: 1.3rem; /* اندازه عنوان */
+  color: #e0e0e0; /* نقره‌ای بسیار روشن */
+  margin-bottom: 7px; /* فاصله پایین */
+  font-family: 'Roboto', sans-serif; /* فونت مدرن */
+  animation: shine 2s infinite; /* انیمیشن برای برق زدن */
+}
 
 
 
@@ -214,3 +223,23 @@ ul {
   text-decoration: none;
 }
 
+
+
+.copyright {
+  text-align: center;
+  font-size: 1rem;
+  color: #f0f0f0;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.copyright a {
+  color: #2bacbd; /* رنگ لینک */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
