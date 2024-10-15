@@ -1,153 +1,75 @@
 import React, { useState, useEffect } from 'react';
+import KeywordInput from './components/KeywordInput';
+import KeywordList from './components/KeywordList';
+import NewsList from './components/NewsList';
 
 function App() {
-  const [keywords, setKeywords] = useState(JSON.parse(localStorage.getItem('keywords')) || []);
-  const [newKeyword, setNewKeyword] = useState('');
+  const [keywords, setKeywords] = useState([]);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentOffset, setCurrentOffset] = useState(5);
   const [hasMore, setHasMore] = useState(true);
 
-  const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+  useEffect(() => {
+    // Load keywords from local storage when the app loads
+    const storedKeywords = JSON.parse(localStorage.getItem('keywords') || '[]');
+    setKeywords(storedKeywords);
+    if (storedKeywords.length > 0) {
+      loadNews(storedKeywords);
+    }
+  }, []);
 
-  const fetchNews = async (keyword) => {
-    if (!keyword) return;
+  // Function to add a keyword
+  const addKeyword = (newKeyword) => {
+    if (newKeyword && !keywords.includes(newKeyword)) {
+      const updatedKeywords = [...keywords, newKeyword];
+      setKeywords(updatedKeywords);
+      localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
+      loadNews(updatedKeywords);  // Reload news when new keyword is added
+    }
+  };
 
+  // Function to remove a keyword
+  const removeKeyword = (keyword) => {
+    const updatedKeywords = keywords.filter(k => k !== keyword);
+    setKeywords(updatedKeywords);
+    localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
+    loadNews(updatedKeywords);  // Reload news when a keyword is removed
+  };
+
+  // Function to load news based on keywords
+  const loadNews = async (keywordsToSearch) => {
+    setLoading(true);
     try {
+      const query = keywordsToSearch.join(' OR ');
+      const apiKey = import.meta.env.VITE_NEWS_API_KEY; // استفاده از متغیر محیطی VITE
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=${keyword}&apiKey=${apiKey}`
+        `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`
       );
       const data = await response.json();
-
-      if (data.articles) {
-        return data.articles;
+      if (data.status === 'ok') {
+        setArticles(data.articles);
+        setHasMore(data.articles.length > 0);
       } else {
         console.error('Error fetching news:', data);
       }
     } catch (error) {
       console.error('Error fetching news:', error);
     }
-    return [];
-  };
-
-  const addKeyword = () => {
-    if (newKeyword && !keywords.includes(newKeyword)) {
-      const updatedKeywords = [...keywords, newKeyword];
-      setKeywords(updatedKeywords);
-      localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
-      setNewKeyword('');
-    }
-  };
-
-  const removeKeyword = (keywordToRemove) => {
-    const updatedKeywords = keywords.filter(keyword => keyword !== keywordToRemove);
-    setKeywords(updatedKeywords);
-    localStorage.setItem('keywords', JSON.stringify(updatedKeywords));
-  };
-
-  const loadNews = async () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-
-    // اگر هیچ کیبوردی وجود نداشت، مقادیر اولیه را تنظیم کنید
-    if (keywords.length === 0) {
-      setArticles([]);
-      setLoading(false);
-      return;
-    }
-
-    const allArticles = [];
-
-    for (const keyword of keywords) {
-      const articlesFromKeyword = await fetchNews(keyword);
-      allArticles.push(...articlesFromKeyword);
-    }
-
-    const groupedArticles = keywords.reduce((acc, keyword) => {
-      acc[keyword] = allArticles.filter(article =>
-        article.title.toLowerCase().includes(keyword.toLowerCase()) ||
-        (article.description && article.description.toLowerCase().includes(keyword.toLowerCase()))
-      );
-      return acc;
-    }, {});
-
-    const selectedArticles = [];
-    const articlesPerKeyword = Math.ceil(currentOffset / keywords.length);
-
-    for (const keyword of keywords) {
-      const articles = groupedArticles[keyword];
-      const randomArticles = articles.sort(() => 0.5 - Math.random()).slice(0, articlesPerKeyword);
-      selectedArticles.push(...randomArticles);
-    }
-
-    const finalArticles = selectedArticles.sort(() => 0.5 - Math.random()).slice(0, currentOffset);
-
-    setArticles(finalArticles);
     setLoading(false);
-
-    if (finalArticles.length < currentOffset) {
-      setHasMore(false);
-    }
   };
-
-  useEffect(() => {
-    loadNews();
-  }, [keywords]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
-        setCurrentOffset((prev) => prev + 5);
-        loadNews();
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentOffset, keywords]);
 
   return (
-    <div className="app">
-      <h1>Personalized News Widget</h1>
-      <div className="search">
-        <input
-          type="text"
-          placeholder="Enter keyword (e.g. AI)"
-          value={newKeyword}
-          onChange={(e) => setNewKeyword(e.target.value)}
-        />
-        <button onClick={addKeyword}>Add Keyword</button>
+    <div className="App">
+      <div className='main-section container-flue'>
+        <div className='row justify-content-center align-items-center full-height'>
+          <div className='col-12 col-md-6 text-center intro-text'>
+            <h1>Xnews </h1>
+            <KeywordInput addKeyword={addKeyword} />
+            <KeywordList keywords={keywords} removeKeyword={removeKeyword} />
+          </div>
+        </div>
       </div>
-      <div className="keywords">
-        <h2>Saved Keywords:</h2>
-        <ul>
-          {keywords.map((keyword, index) => (
-            <li key={index}>
-              {keyword}
-              <button onClick={() => removeKeyword(keyword)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="news">
-        {articles.length > 0 && (
-          <ul>
-            {articles.map((article, index) => (
-              <li key={index}>
-                <a href={article.url} target="_blank" rel="noopener noreferrer">
-                  <h2>{article.title}</h2>
-                  <p>{article.description}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-        {loading && <p>Loading more news...</p>}
-        {!hasMore && <p>No more news available.</p>}
-      </div>
+      <NewsList articles={articles} loading={loading} hasMore={hasMore} />
     </div>
   );
 }

@@ -1,68 +1,216 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  margin: 0; /* حذف فاصله پیش‌فرض */
+  padding: 0; /* حذف padding پیش‌فرض */
+  font-family: 'Roboto', sans-serif; /* فونت پیش‌فرض */
+  background-image: url('../src/assets/bg/bg-space.jpg'); /* آدرس تصویر */
+  background-size: cover; /* پوشش کامل صفحه */
+  background-position: center; /* مرکز تصویر */
+  background-attachment: fixed; /* ثابت بودن تصویر */
+  color: #fff; /* رنگ متن سفید */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+.full-height {
+  height:70dvh; /* ارتفاع کل صفحه */
+  display: flex; /* استفاده از flexbox */
+  flex-direction: column; /* جهت محتوای افقی */
+  justify-content: center; /* مرکز چینش عمودی */
+  align-items: center; /* مرکز چینش افقی */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.main-section{
+  width: 100%;
+  height: 70dvh;
+  
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.intro-text {
+  text-align: center; /* تراز وسط متن */
+}
+
+@keyframes shine {
+  0% {
+    color: #e0e0e0; /* رنگ نقره‌ای بسیار روشن */
+    text-shadow: 
+      1px 1px 5px rgba(0, 0, 0, 0.1), 
+      0 0 25px rgba(255, 255, 255, 0.3), 
+      0 0 50px rgba(255, 255, 255, 0.5);
   }
-  a:hover {
-    color: #747bff;
+  50% {
+    color: #ffffff; /* رنگ سفید */
+    text-shadow: 
+      1px 1px 10px rgba(0, 0, 0, 0.1), 
+      0 0 35px rgba(255, 255, 255, 0.6), 
+      0 0 70px rgba(255, 255, 255, 0.7);
   }
-  button {
-    background-color: #f9f9f9;
+  100% {
+    color: #e0e0e0; /* بازگشت به نقره‌ای روشن */
+    text-shadow: 
+      1px 1px 5px rgba(0, 0, 0, 0.1), 
+      0 0 25px rgba(255, 255, 255, 0.212), 
+      0 0 50px rgba(255, 255, 255, 0.5);
   }
 }
+
+.intro-text h1 {
+  font-size: 4rem; /* اندازه عنوان */
+  color: #e0e0e0; /* نقره‌ای بسیار روشن */
+  font-weight: bold; /* بولد بودن عنوان */
+  margin-bottom: 7px; /* فاصله پایین */
+  font-family: 'Poppins', sans-serif; /* فونت مدرن */
+  animation: shine 2s infinite; /* انیمیشن برای برق زدن */
+}
+
+
+
+
+
+.keyword-input {
+  display: flex; /* چیدمان افقی */
+  align-items: center; /* تراز عمودی */
+  margin-bottom: 20px; /* فاصله پایین */
+}
+
+.keyword-input input[type="text"] {
+  flex: 1; /* اینپوت تمام فضای موجود را پر کند */
+  padding: 10px 15px; /* فاصله داخلی */
+  border: none; /* حذف مرز */
+  border-radius: 25px; /* گوشه‌های گرد */
+  background: rgba(255, 255, 255, 0.3); /* رنگ شفاف */
+  backdrop-filter: blur(10px); /* اثر شیشه‌ای */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* سایه */
+  font-size: 1rem; /* اندازه فونت */
+  color: #333; /* رنگ متن */
+  transition: all 0.3s ease; /* انیمیشن برای تغییرات */
+}
+
+.keyword-input input[type="text"]:focus {
+  outline: none; /* حذف خط بیرونی */
+  background: rgba(255, 255, 255, 0.5); /* رنگ شفاف در حالت فوکوس */
+}
+
+.keyword-input input[type="text"]::placeholder {
+  color: rgba(51, 51, 51, 0.8); /* رنگ متن راهنما */
+  font-style: italic; /* ایتالیک */
+}
+
+.keyword-input button {
+  margin-left: 10px; /* فاصله بین اینپوت و دکمه */
+  padding: 10px 20px; /* فاصله داخلی */
+  border: none; /* حذف مرز */
+  border-radius: 25px; /* گوشه‌های گرد */
+  background: linear-gradient(45deg, #007bff, #00c6ff); /* گرادیانت آبی */
+  color: white; /* رنگ متن دکمه */
+  font-size: 1rem; /* اندازه فونت دکمه */
+  cursor: pointer; /* تغییر اشاره‌گر به دست */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* سایه */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* انیمیشن برای تغییرات */
+}
+
+.keyword-input button:hover {
+  background: linear-gradient(45deg, #00c6ff, #007bff); /* تغییر رنگ دکمه در حالت هاور */
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.5), 0 0 40px rgba(0, 123, 255, 0.5); /* سایه نورانی */
+}
+
+
+
+.keyword-list {
+  display: flex; /* استفاده از flex برای چینش */
+  flex-wrap: wrap; /* به‌هم پیوسته بودن آیتم‌ها */
+  gap: 10px; /* فاصله بین آیتم‌ها */
+  justify-content: center; /* چینش به مرکز */
+  align-items: center; /* تراز عمودی */
+  margin-top: 20px; /* فاصله از بالای صفحه */
+}
+
+.keyword-item {
+  background: rgba(255, 255, 255, 0.3); /* پس‌زمینه شفاف */
+  backdrop-filter: blur(10px); /* افکت شیشه‌ای */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* حاشیه شفاف */
+  border-radius: 10px; /* گوشه‌های گرد */
+  padding: 5px 10px; /* فاصله داخلی */
+  display: flex; /* استفاده از flex برای چینش داخلی */
+  align-items: center; /* تراز عمودی */
+  transition: all 0.3s ease; /* انیمیشن نرم */
+}
+
+.keyword-item:hover {
+  transform: scale(1.05); /* بزرگ شدن کمی هنگام هاور */
+}
+
+.remove-btn {
+  background: none; /* حذف پس‌زمینه */
+  border: none; /* حذف حاشیه */
+  color: #ffffff; /* رنگ دکمه */
+  font-size: 1.5rem; /* اندازه دکمه */
+  cursor: pointer; /* نمایش نشانه اشاره‌گر */
+  margin-left: 10px; /* فاصله بین متن و دکمه */
+  transition: color 0.3s ease; /* انیمیشن تغییر رنگ */
+}
+
+.remove-btn:hover {
+  color: #b4b4b4; /* تغییر رنگ دکمه در هاور */
+}
+
+
+.news-item {
+  position: relative;
+  width: 100%;
+  height: 300px; /* ارتفاع هر آیتم خبری */
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.news-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+}
+
+.news-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.news-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.news-content p {
+  font-size: 1rem;
+  color: #f0f0f0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.news a {
+  text-decoration: none;
+}
+
