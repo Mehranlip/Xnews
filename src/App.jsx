@@ -49,6 +49,14 @@ function App() {
     if (loading || !hasMore) return;
 
     setLoading(true);
+
+    // اگر هیچ کیبوردی وجود نداشت، مقادیر اولیه را تنظیم کنید
+    if (keywords.length === 0) {
+      setArticles([]);
+      setLoading(false);
+      return;
+    }
+
     const allArticles = [];
 
     for (const keyword of keywords) {
@@ -75,7 +83,7 @@ function App() {
 
     const finalArticles = selectedArticles.sort(() => 0.5 - Math.random()).slice(0, currentOffset);
 
-    setArticles(finalArticles); // اخبار جدید بارگذاری می‌شود
+    setArticles(finalArticles);
     setLoading(false);
 
     if (finalArticles.length < currentOffset) {
@@ -84,7 +92,7 @@ function App() {
   };
 
   useEffect(() => {
-    loadNews(); // بارگذاری اخبار هر بار که کیبورد تغییر کند
+    loadNews();
   }, [keywords]);
 
   useEffect(() => {
